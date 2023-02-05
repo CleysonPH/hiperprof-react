@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 
+import Router from "@routes/routes";
+
 export default function useIndex() {
   const router = useRouter();
   const [search, setSearch] = useState("");
@@ -9,7 +11,7 @@ export default function useIndex() {
   const onSearchTeacher = (event: FormEvent) => {
     event.preventDefault();
     if (search.trim().length >= 3) {
-      router.push(`/pesquisa-professor`);
+      Router.searchTeacher.push(router, search);
     } else {
       setMessageError("Digite pelo menos 3 caracteres");
     }
