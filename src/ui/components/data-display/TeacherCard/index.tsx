@@ -1,21 +1,23 @@
+import { Teacher } from "@data/@types/teacher";
 import { Button, Typography } from "@mui/material";
-import {
-  BoxAvatarStyled,
-  BoxCardStyled,
-  BoxContentStyled,
-  ImageStyled,
-} from "./styles";
+import React from "react";
+import { BoxAvatarStyled, BoxContentStyled, ImageStyled } from "./styles";
 
-const TeacherCard = () => {
+export interface TeacherCardProps {
+  teacher: Teacher;
+  onClick: (teacher: Teacher) => void;
+}
+
+const TeacherCard: React.FC<TeacherCardProps> = ({ teacher, onClick }) => {
   return (
-    <BoxCardStyled>
+    <>
       <BoxAvatarStyled>
-        <ImageStyled src="https://github.com/cleysonph.png" alt="" />
+        <BoxAvatarImage src={teacher.foto_perfil} alt="" />
       </BoxAvatarStyled>
       <BoxContentStyled>
         <div className="text-container">
           <Typography variant="h6" className="description" paragraph>
-            Nome
+            {teacher.nome}
           </Typography>
           <Typography
             className="description"
@@ -23,21 +25,26 @@ const TeacherCard = () => {
             variant="body2"
             paragraph
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-            assumenda similique ut minima, aperiam labore ab. Sapiente minima,
-            animi fugit atque doloribus repellendus quibusdam voluptatibus enim?
-            Nulla totam earum eaque? Labore, recusandae tempore earum assumenda
-            impedit obcaecati incidunt dolorem ducimus, officiis placeat vel nam
-            nulla consequuntur, dicta odio soluta! Exercitationem sunt sint
-            dolorem dicta fugiat eaque, voluptas cumque perferendis id?
+            {teacher.descricao}
           </Typography>
         </div>
-        <Button variant="outlined" color="inherit" onClick={() => {}}>
+        <Button
+          variant="outlined"
+          color="inherit"
+          onClick={() => onClick(teacher)}
+        >
           Ver detalhes
         </Button>
       </BoxContentStyled>
-    </BoxCardStyled>
+    </>
   );
+};
+
+const BoxAvatarImage = ({ src, alt }: { src?: string; alt: string }) => {
+  if (src) {
+    return <ImageStyled src={src} alt={alt} />;
+  }
+  return <ImageStyled src={"/user.svg"} alt={""} sx={{ width: "50%" }} />;
 };
 
 export default TeacherCard;

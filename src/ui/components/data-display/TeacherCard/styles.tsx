@@ -1,12 +1,5 @@
 import { styled } from "@mui/material/styles";
 
-export const BoxCardStyled = styled("div")`
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  padding: 0;
-`;
-
 export const BoxAvatarStyled = styled("div")`
   display: flex;
   align-items: center;
@@ -23,7 +16,7 @@ export const ImageStyled = styled("img")`
 export const BoxContentStyled = styled("div")`
   height: 400px;
   background-color: ${({ theme }) => theme.palette.primary.main};
-  padding: 0;
+  padding: ${({ theme }) => theme.spacing(2)};
   text-align: center;
   color: ${({ theme }) => theme.palette.primary.contrastText};
 
