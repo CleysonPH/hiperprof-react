@@ -10,6 +10,11 @@ const Router = {
     push: (router: NextRouter, search?: string) =>
       router.push({ pathname: Router.searchTeacher.name, query: { search } }),
   },
+  detalhesProfessor: {
+    name: "/professor/detalhes",
+    push: (router: NextRouter) =>
+      router.push({ pathname: Router.detalhesProfessor.name }),
+  },
 };
 
 export default Router;
