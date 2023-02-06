@@ -1,8 +1,11 @@
 import PageTitle from "@components/data-display/PageTitle";
 import TeacherList from "@components/data-display/TeacherList";
+import usePesquisaProfessor from "@data/hooks/pages/usePesquisaProfessor";
 import { Container, Icon, TextField } from "@mui/material";
 
 const PesquisaProfessor = () => {
+  const { teachers, onSearch, onSelectTeacher } = usePesquisaProfessor();
+
   return (
     <Container>
       <TextField
@@ -13,12 +16,13 @@ const PesquisaProfessor = () => {
         }}
         fullWidth
         required
+        onChange={({ target }) => onSearch(target.value)}
       />
       <PageTitle
         title="Professores encontrados"
         subtitle="Clique sobre um professor para ver os detalhes e poder marcar uma aula com o mesmo"
       />
-      <TeacherList teachers={[]} onClick={(teacher) => {}} />
+      <TeacherList teachers={teachers} onClick={onSelectTeacher} />
     </Container>
   );
 };
